@@ -1,0 +1,2616 @@
+终端机在文法中未使用
+
+    T_STRING
+    BOOL
+    LOP_EQ
+
+
+状态 31 冲突：1 项偏移/归约
+
+
+语法
+
+    0 $accept: program $end
+
+    1 program: statements functions
+    2        | functions
+
+    3 functions: function
+    4          | functions function
+
+    5 function: T IDENTIFIER CL CR L statements R
+
+    6 statements: statement
+    7           | statements statement
+
+    8 statement: SEMICOLON
+    9          | expr SEMICOLON
+   10          | declaration SEMICOLON
+   11          | assign SEMICOLON
+   12          | while
+   13          | if
+   14          | L statements R
+   15          | L R
+   16          | for
+   17          | scanf SEMICOLON
+   18          | printf SEMICOLON
+   19          | RETURN expr SEMICOLON
+
+   20 scanf: SCANF CL scanbodys CR
+
+   21 scanbodys: scanbody
+   22          | scanbodys COMMA scanbody
+
+   23 scanbody: expr
+   24         | QU IDENTIFIER
+
+   25 printf: PRINTF CL printfbodys CR
+
+   26 printfbodys: printfbody
+   27            | printfbodys COMMA printfbody
+
+   28 printfbody: expr
+
+   29 for: FOR forcondition statement
+
+   30 forcondition: CL statement expr SEMICOLON assign CR
+   31             | CL statement expr SEMICOLON expr CR
+
+   32 if: ifbody elsebody
+   33   | ifbody
+
+   34 elsebody: ELSE statement
+
+   35 ifbody: IF CL expr CR statement
+
+   36 while: WHILE CL expr CR statement
+
+   37 assign: IDENTIFIER LOP_ASSIGN expr
+
+   38 declaration: T decs
+
+   39 decs: singledec
+   40     | singledec COMMA decs
+
+   41 singledec: IDENTIFIER LOP_ASSIGN expr
+   42          | IDENTIFIER
+
+   43 expr: IDENTIFIER
+   44     | INTEGER
+   45     | CHAR
+   46     | STRING
+   47     | IDENTIFIER PP
+   48     | IDENTIFIER MM
+   49     | PP IDENTIFIER
+   50     | MM IDENTIFIER
+   51     | IDENTIFIER PLUSE expr
+   52     | IDENTIFIER MINUSE expr
+   53     | expr EQUAL expr
+   54     | expr PLUS expr
+   55     | expr MINUS expr
+   56     | expr MUL expr
+   57     | expr DIV expr
+   58     | expr NEQUAL expr
+   59     | CL expr CR
+   60     | expr BIGGER expr
+   61     | expr BIGGERE expr
+   62     | expr LESS expr
+   63     | expr LESSE expr
+   64     | NOT expr
+   65     | expr AND expr
+   66     | expr OR expr
+   67     | expr MOD expr
+   68     | MINUS expr
+
+   69 T: T_INT
+   70  | T_CHAR
+   71  | T_BOOL
+   72  | VOID
+
+
+终结语词，附有它们出现处的规则
+
+    $end (0) 0
+    error (256)
+    T_CHAR (258) 70
+    T_INT (259) 69
+    T_STRING (260)
+    T_BOOL (261) 71
+    VOID (262) 72
+    LOP_ASSIGN (263) 37 41
+    COMMA (264) 22 27 40
+    L (265) 5 14 15
+    R (266) 5 14 15
+    CL (267) 5 20 25 30 31 35 36 59
+    CR (268) 5 20 25 30 31 35 36 59
+    SEMICOLON (269) 8 9 10 11 17 18 19 30 31
+    IDENTIFIER (270) 5 24 37 41 42 43 47 48 49 50 51 52
+    INTEGER (271) 44
+    CHAR (272) 45
+    BOOL (273)
+    STRING (274) 46
+    WHILE (275) 36
+    IF (276) 35
+    ELSE (277) 34
+    FOR (278) 29
+    PRINTF (279) 25
+    SCANF (280) 20
+    RETURN (281) 19
+    PLUSE (282) 51
+    MINUSE (283) 52
+    OR (284) 66
+    LOP_EQ (285)
+    EQUAL (286) 53
+    NEQUAL (287) 58
+    BIGGER (288) 60
+    LESS (289) 62
+    BIGGERE (290) 61
+    LESSE (291) 63
+    PLUS (292) 54
+    MINUS (293) 55 68
+    MUL (294) 56
+    DIV (295) 57
+    MOD (296) 67
+    AND (297) 65
+    NOT (298) 64
+    PP (299) 47 49
+    MM (300) 48 50
+    QU (301) 24
+
+
+非终结语词，附有它们出现处的规则
+
+    $accept (47)
+        on left: 0
+    program (48)
+        on left: 1 2
+        on right: 0
+    functions (49)
+        on left: 3 4
+        on right: 1 2 4
+    function (50)
+        on left: 5
+        on right: 3 4
+    statements (51)
+        on left: 6 7
+        on right: 1 5 7 14
+    statement (52)
+        on left: 8 9 10 11 12 13 14 15 16 17 18 19
+        on right: 6 7 29 30 31 34 35 36
+    scanf (53)
+        on left: 20
+        on right: 17
+    scanbodys (54)
+        on left: 21 22
+        on right: 20 22
+    scanbody (55)
+        on left: 23 24
+        on right: 21 22
+    printf (56)
+        on left: 25
+        on right: 18
+    printfbodys (57)
+        on left: 26 27
+        on right: 25 27
+    printfbody (58)
+        on left: 28
+        on right: 26 27
+    for (59)
+        on left: 29
+        on right: 16
+    forcondition (60)
+        on left: 30 31
+        on right: 29
+    if (61)
+        on left: 32 33
+        on right: 13
+    elsebody (62)
+        on left: 34
+        on right: 32
+    ifbody (63)
+        on left: 35
+        on right: 32 33
+    while (64)
+        on left: 36
+        on right: 12
+    assign (65)
+        on left: 37
+        on right: 11 30
+    declaration (66)
+        on left: 38
+        on right: 10
+    decs (67)
+        on left: 39 40
+        on right: 38 40
+    singledec (68)
+        on left: 41 42
+        on right: 39 40
+    expr (69)
+        on left: 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68
+        on right: 9 19 23 28 30 31 35 36 37 41 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68
+    T (70)
+        on left: 69 70 71 72
+        on right: 5 38
+
+
+状态 0
+
+    0 $accept: . program $end
+
+    T_CHAR      偏移，并进入状态 1
+    T_INT       偏移，并进入状态 2
+    T_BOOL      偏移，并进入状态 3
+    VOID        偏移，并进入状态 4
+    L           偏移，并进入状态 5
+    CL          偏移，并进入状态 6
+    SEMICOLON   偏移，并进入状态 7
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    WHILE       偏移，并进入状态 12
+    IF          偏移，并进入状态 13
+    FOR         偏移，并进入状态 14
+    PRINTF      偏移，并进入状态 15
+    SCANF       偏移，并进入状态 16
+    RETURN      偏移，并进入状态 17
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    program      转到状态 22
+    functions    转到状态 23
+    function     转到状态 24
+    statements   转到状态 25
+    statement    转到状态 26
+    scanf        转到状态 27
+    printf       转到状态 28
+    for          转到状态 29
+    if           转到状态 30
+    ifbody       转到状态 31
+    while        转到状态 32
+    assign       转到状态 33
+    declaration  转到状态 34
+    expr         转到状态 35
+    T            转到状态 36
+
+
+状态 1
+
+   70 T: T_CHAR .
+
+    $default  使用规则 70 以归约 (T)
+
+
+状态 2
+
+   69 T: T_INT .
+
+    $default  使用规则 69 以归约 (T)
+
+
+状态 3
+
+   71 T: T_BOOL .
+
+    $default  使用规则 71 以归约 (T)
+
+
+状态 4
+
+   72 T: VOID .
+
+    $default  使用规则 72 以归约 (T)
+
+
+状态 5
+
+   14 statement: L . statements R
+   15          | L . R
+
+    T_CHAR      偏移，并进入状态 1
+    T_INT       偏移，并进入状态 2
+    T_BOOL      偏移，并进入状态 3
+    VOID        偏移，并进入状态 4
+    L           偏移，并进入状态 5
+    R           偏移，并进入状态 37
+    CL          偏移，并进入状态 6
+    SEMICOLON   偏移，并进入状态 7
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    WHILE       偏移，并进入状态 12
+    IF          偏移，并进入状态 13
+    FOR         偏移，并进入状态 14
+    PRINTF      偏移，并进入状态 15
+    SCANF       偏移，并进入状态 16
+    RETURN      偏移，并进入状态 17
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    statements   转到状态 38
+    statement    转到状态 26
+    scanf        转到状态 27
+    printf       转到状态 28
+    for          转到状态 29
+    if           转到状态 30
+    ifbody       转到状态 31
+    while        转到状态 32
+    assign       转到状态 33
+    declaration  转到状态 34
+    expr         转到状态 35
+    T            转到状态 39
+
+
+状态 6
+
+   59 expr: CL . expr CR
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 41
+
+
+状态 7
+
+    8 statement: SEMICOLON .
+
+    $default  使用规则 8 以归约 (statement)
+
+
+状态 8
+
+   37 assign: IDENTIFIER . LOP_ASSIGN expr
+   43 expr: IDENTIFIER .
+   47     | IDENTIFIER . PP
+   48     | IDENTIFIER . MM
+   51     | IDENTIFIER . PLUSE expr
+   52     | IDENTIFIER . MINUSE expr
+
+    LOP_ASSIGN  偏移，并进入状态 42
+    PLUSE       偏移，并进入状态 43
+    MINUSE      偏移，并进入状态 44
+    PP          偏移，并进入状态 45
+    MM          偏移，并进入状态 46
+
+    $default  使用规则 43 以归约 (expr)
+
+
+状态 9
+
+   44 expr: INTEGER .
+
+    $default  使用规则 44 以归约 (expr)
+
+
+状态 10
+
+   45 expr: CHAR .
+
+    $default  使用规则 45 以归约 (expr)
+
+
+状态 11
+
+   46 expr: STRING .
+
+    $default  使用规则 46 以归约 (expr)
+
+
+状态 12
+
+   36 while: WHILE . CL expr CR statement
+
+    CL  偏移，并进入状态 47
+
+
+状态 13
+
+   35 ifbody: IF . CL expr CR statement
+
+    CL  偏移，并进入状态 48
+
+
+状态 14
+
+   29 for: FOR . forcondition statement
+
+    CL  偏移，并进入状态 49
+
+    forcondition  转到状态 50
+
+
+状态 15
+
+   25 printf: PRINTF . CL printfbodys CR
+
+    CL  偏移，并进入状态 51
+
+
+状态 16
+
+   20 scanf: SCANF . CL scanbodys CR
+
+    CL  偏移，并进入状态 52
+
+
+状态 17
+
+   19 statement: RETURN . expr SEMICOLON
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 53
+
+
+状态 18
+
+   68 expr: MINUS . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 54
+
+
+状态 19
+
+   64 expr: NOT . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 55
+
+
+状态 20
+
+   49 expr: PP . IDENTIFIER
+
+    IDENTIFIER  偏移，并进入状态 56
+
+
+状态 21
+
+   50 expr: MM . IDENTIFIER
+
+    IDENTIFIER  偏移，并进入状态 57
+
+
+状态 22
+
+    0 $accept: program . $end
+
+    $end  偏移，并进入状态 58
+
+
+状态 23
+
+    2 program: functions .
+    4 functions: functions . function
+
+    T_CHAR  偏移，并进入状态 1
+    T_INT   偏移，并进入状态 2
+    T_BOOL  偏移，并进入状态 3
+    VOID    偏移，并进入状态 4
+
+    $default  使用规则 2 以归约 (program)
+
+    function  转到状态 59
+    T         转到状态 60
+
+
+状态 24
+
+    3 functions: function .
+
+    $default  使用规则 3 以归约 (functions)
+
+
+状态 25
+
+    1 program: statements . functions
+    7 statements: statements . statement
+
+    T_CHAR      偏移，并进入状态 1
+    T_INT       偏移，并进入状态 2
+    T_BOOL      偏移，并进入状态 3
+    VOID        偏移，并进入状态 4
+    L           偏移，并进入状态 5
+    CL          偏移，并进入状态 6
+    SEMICOLON   偏移，并进入状态 7
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    WHILE       偏移，并进入状态 12
+    IF          偏移，并进入状态 13
+    FOR         偏移，并进入状态 14
+    PRINTF      偏移，并进入状态 15
+    SCANF       偏移，并进入状态 16
+    RETURN      偏移，并进入状态 17
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    functions    转到状态 61
+    function     转到状态 24
+    statement    转到状态 62
+    scanf        转到状态 27
+    printf       转到状态 28
+    for          转到状态 29
+    if           转到状态 30
+    ifbody       转到状态 31
+    while        转到状态 32
+    assign       转到状态 33
+    declaration  转到状态 34
+    expr         转到状态 35
+    T            转到状态 36
+
+
+状态 26
+
+    6 statements: statement .
+
+    $default  使用规则 6 以归约 (statements)
+
+
+状态 27
+
+   17 statement: scanf . SEMICOLON
+
+    SEMICOLON  偏移，并进入状态 63
+
+
+状态 28
+
+   18 statement: printf . SEMICOLON
+
+    SEMICOLON  偏移，并进入状态 64
+
+
+状态 29
+
+   16 statement: for .
+
+    $default  使用规则 16 以归约 (statement)
+
+
+状态 30
+
+   13 statement: if .
+
+    $default  使用规则 13 以归约 (statement)
+
+
+状态 31
+
+   32 if: ifbody . elsebody
+   33   | ifbody .
+
+    ELSE  偏移，并进入状态 65
+
+    ELSE      [使用规则 33 以归约 (if)]
+    $default  使用规则 33 以归约 (if)
+
+    elsebody  转到状态 66
+
+
+状态 32
+
+   12 statement: while .
+
+    $default  使用规则 12 以归约 (statement)
+
+
+状态 33
+
+   11 statement: assign . SEMICOLON
+
+    SEMICOLON  偏移，并进入状态 67
+
+
+状态 34
+
+   10 statement: declaration . SEMICOLON
+
+    SEMICOLON  偏移，并进入状态 68
+
+
+状态 35
+
+    9 statement: expr . SEMICOLON
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    SEMICOLON  偏移，并进入状态 69
+    OR         偏移，并进入状态 70
+    EQUAL      偏移，并进入状态 71
+    NEQUAL     偏移，并进入状态 72
+    BIGGER     偏移，并进入状态 73
+    LESS       偏移，并进入状态 74
+    BIGGERE    偏移，并进入状态 75
+    LESSE      偏移，并进入状态 76
+    PLUS       偏移，并进入状态 77
+    MINUS      偏移，并进入状态 78
+    MUL        偏移，并进入状态 79
+    DIV        偏移，并进入状态 80
+    MOD        偏移，并进入状态 81
+    AND        偏移，并进入状态 82
+
+
+状态 36
+
+    5 function: T . IDENTIFIER CL CR L statements R
+   38 declaration: T . decs
+
+    IDENTIFIER  偏移，并进入状态 83
+
+    decs       转到状态 84
+    singledec  转到状态 85
+
+
+状态 37
+
+   15 statement: L R .
+
+    $default  使用规则 15 以归约 (statement)
+
+
+状态 38
+
+    7 statements: statements . statement
+   14 statement: L statements . R
+
+    T_CHAR      偏移，并进入状态 1
+    T_INT       偏移，并进入状态 2
+    T_BOOL      偏移，并进入状态 3
+    VOID        偏移，并进入状态 4
+    L           偏移，并进入状态 5
+    R           偏移，并进入状态 86
+    CL          偏移，并进入状态 6
+    SEMICOLON   偏移，并进入状态 7
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    WHILE       偏移，并进入状态 12
+    IF          偏移，并进入状态 13
+    FOR         偏移，并进入状态 14
+    PRINTF      偏移，并进入状态 15
+    SCANF       偏移，并进入状态 16
+    RETURN      偏移，并进入状态 17
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    statement    转到状态 62
+    scanf        转到状态 27
+    printf       转到状态 28
+    for          转到状态 29
+    if           转到状态 30
+    ifbody       转到状态 31
+    while        转到状态 32
+    assign       转到状态 33
+    declaration  转到状态 34
+    expr         转到状态 35
+    T            转到状态 39
+
+
+状态 39
+
+   38 declaration: T . decs
+
+    IDENTIFIER  偏移，并进入状态 87
+
+    decs       转到状态 84
+    singledec  转到状态 85
+
+
+状态 40
+
+   43 expr: IDENTIFIER .
+   47     | IDENTIFIER . PP
+   48     | IDENTIFIER . MM
+   51     | IDENTIFIER . PLUSE expr
+   52     | IDENTIFIER . MINUSE expr
+
+    PLUSE   偏移，并进入状态 43
+    MINUSE  偏移，并进入状态 44
+    PP      偏移，并进入状态 45
+    MM      偏移，并进入状态 46
+
+    $default  使用规则 43 以归约 (expr)
+
+
+状态 41
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   59     | CL expr . CR
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    CR       偏移，并进入状态 88
+    OR       偏移，并进入状态 70
+    EQUAL    偏移，并进入状态 71
+    NEQUAL   偏移，并进入状态 72
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+
+状态 42
+
+   37 assign: IDENTIFIER LOP_ASSIGN . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 89
+
+
+状态 43
+
+   51 expr: IDENTIFIER PLUSE . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 90
+
+
+状态 44
+
+   52 expr: IDENTIFIER MINUSE . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 91
+
+
+状态 45
+
+   47 expr: IDENTIFIER PP .
+
+    $default  使用规则 47 以归约 (expr)
+
+
+状态 46
+
+   48 expr: IDENTIFIER MM .
+
+    $default  使用规则 48 以归约 (expr)
+
+
+状态 47
+
+   36 while: WHILE CL . expr CR statement
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 92
+
+
+状态 48
+
+   35 ifbody: IF CL . expr CR statement
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 93
+
+
+状态 49
+
+   30 forcondition: CL . statement expr SEMICOLON assign CR
+   31             | CL . statement expr SEMICOLON expr CR
+
+    T_CHAR      偏移，并进入状态 1
+    T_INT       偏移，并进入状态 2
+    T_BOOL      偏移，并进入状态 3
+    VOID        偏移，并进入状态 4
+    L           偏移，并进入状态 5
+    CL          偏移，并进入状态 6
+    SEMICOLON   偏移，并进入状态 7
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    WHILE       偏移，并进入状态 12
+    IF          偏移，并进入状态 13
+    FOR         偏移，并进入状态 14
+    PRINTF      偏移，并进入状态 15
+    SCANF       偏移，并进入状态 16
+    RETURN      偏移，并进入状态 17
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    statement    转到状态 94
+    scanf        转到状态 27
+    printf       转到状态 28
+    for          转到状态 29
+    if           转到状态 30
+    ifbody       转到状态 31
+    while        转到状态 32
+    assign       转到状态 33
+    declaration  转到状态 34
+    expr         转到状态 35
+    T            转到状态 39
+
+
+状态 50
+
+   29 for: FOR forcondition . statement
+
+    T_CHAR      偏移，并进入状态 1
+    T_INT       偏移，并进入状态 2
+    T_BOOL      偏移，并进入状态 3
+    VOID        偏移，并进入状态 4
+    L           偏移，并进入状态 5
+    CL          偏移，并进入状态 6
+    SEMICOLON   偏移，并进入状态 7
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    WHILE       偏移，并进入状态 12
+    IF          偏移，并进入状态 13
+    FOR         偏移，并进入状态 14
+    PRINTF      偏移，并进入状态 15
+    SCANF       偏移，并进入状态 16
+    RETURN      偏移，并进入状态 17
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    statement    转到状态 95
+    scanf        转到状态 27
+    printf       转到状态 28
+    for          转到状态 29
+    if           转到状态 30
+    ifbody       转到状态 31
+    while        转到状态 32
+    assign       转到状态 33
+    declaration  转到状态 34
+    expr         转到状态 35
+    T            转到状态 39
+
+
+状态 51
+
+   25 printf: PRINTF CL . printfbodys CR
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    printfbodys  转到状态 96
+    printfbody   转到状态 97
+    expr         转到状态 98
+
+
+状态 52
+
+   20 scanf: SCANF CL . scanbodys CR
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+    QU          偏移，并进入状态 99
+
+    scanbodys  转到状态 100
+    scanbody   转到状态 101
+    expr       转到状态 102
+
+
+状态 53
+
+   19 statement: RETURN expr . SEMICOLON
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    SEMICOLON  偏移，并进入状态 103
+    OR         偏移，并进入状态 70
+    EQUAL      偏移，并进入状态 71
+    NEQUAL     偏移，并进入状态 72
+    BIGGER     偏移，并进入状态 73
+    LESS       偏移，并进入状态 74
+    BIGGERE    偏移，并进入状态 75
+    LESSE      偏移，并进入状态 76
+    PLUS       偏移，并进入状态 77
+    MINUS      偏移，并进入状态 78
+    MUL        偏移，并进入状态 79
+    DIV        偏移，并进入状态 80
+    MOD        偏移，并进入状态 81
+    AND        偏移，并进入状态 82
+
+
+状态 54
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+   68     | MINUS expr .
+
+    MUL  偏移，并进入状态 79
+    DIV  偏移，并进入状态 80
+    MOD  偏移，并进入状态 81
+    AND  偏移，并进入状态 82
+
+    $default  使用规则 68 以归约 (expr)
+
+
+状态 55
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   64     | NOT expr .
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    AND  偏移，并进入状态 82
+
+    $default  使用规则 64 以归约 (expr)
+
+
+状态 56
+
+   49 expr: PP IDENTIFIER .
+
+    $default  使用规则 49 以归约 (expr)
+
+
+状态 57
+
+   50 expr: MM IDENTIFIER .
+
+    $default  使用规则 50 以归约 (expr)
+
+
+状态 58
+
+    0 $accept: program $end .
+
+    $default  接受
+
+
+状态 59
+
+    4 functions: functions function .
+
+    $default  使用规则 4 以归约 (functions)
+
+
+状态 60
+
+    5 function: T . IDENTIFIER CL CR L statements R
+
+    IDENTIFIER  偏移，并进入状态 104
+
+
+状态 61
+
+    1 program: statements functions .
+    4 functions: functions . function
+
+    T_CHAR  偏移，并进入状态 1
+    T_INT   偏移，并进入状态 2
+    T_BOOL  偏移，并进入状态 3
+    VOID    偏移，并进入状态 4
+
+    $default  使用规则 1 以归约 (program)
+
+    function  转到状态 59
+    T         转到状态 60
+
+
+状态 62
+
+    7 statements: statements statement .
+
+    $default  使用规则 7 以归约 (statements)
+
+
+状态 63
+
+   17 statement: scanf SEMICOLON .
+
+    $default  使用规则 17 以归约 (statement)
+
+
+状态 64
+
+   18 statement: printf SEMICOLON .
+
+    $default  使用规则 18 以归约 (statement)
+
+
+状态 65
+
+   34 elsebody: ELSE . statement
+
+    T_CHAR      偏移，并进入状态 1
+    T_INT       偏移，并进入状态 2
+    T_BOOL      偏移，并进入状态 3
+    VOID        偏移，并进入状态 4
+    L           偏移，并进入状态 5
+    CL          偏移，并进入状态 6
+    SEMICOLON   偏移，并进入状态 7
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    WHILE       偏移，并进入状态 12
+    IF          偏移，并进入状态 13
+    FOR         偏移，并进入状态 14
+    PRINTF      偏移，并进入状态 15
+    SCANF       偏移，并进入状态 16
+    RETURN      偏移，并进入状态 17
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    statement    转到状态 105
+    scanf        转到状态 27
+    printf       转到状态 28
+    for          转到状态 29
+    if           转到状态 30
+    ifbody       转到状态 31
+    while        转到状态 32
+    assign       转到状态 33
+    declaration  转到状态 34
+    expr         转到状态 35
+    T            转到状态 39
+
+
+状态 66
+
+   32 if: ifbody elsebody .
+
+    $default  使用规则 32 以归约 (if)
+
+
+状态 67
+
+   11 statement: assign SEMICOLON .
+
+    $default  使用规则 11 以归约 (statement)
+
+
+状态 68
+
+   10 statement: declaration SEMICOLON .
+
+    $default  使用规则 10 以归约 (statement)
+
+
+状态 69
+
+    9 statement: expr SEMICOLON .
+
+    $default  使用规则 9 以归约 (statement)
+
+
+状态 70
+
+   66 expr: expr OR . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 106
+
+
+状态 71
+
+   53 expr: expr EQUAL . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 107
+
+
+状态 72
+
+   58 expr: expr NEQUAL . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 108
+
+
+状态 73
+
+   60 expr: expr BIGGER . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 109
+
+
+状态 74
+
+   62 expr: expr LESS . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 110
+
+
+状态 75
+
+   61 expr: expr BIGGERE . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 111
+
+
+状态 76
+
+   63 expr: expr LESSE . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 112
+
+
+状态 77
+
+   54 expr: expr PLUS . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 113
+
+
+状态 78
+
+   55 expr: expr MINUS . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 114
+
+
+状态 79
+
+   56 expr: expr MUL . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 115
+
+
+状态 80
+
+   57 expr: expr DIV . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 116
+
+
+状态 81
+
+   67 expr: expr MOD . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 117
+
+
+状态 82
+
+   65 expr: expr AND . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 118
+
+
+状态 83
+
+    5 function: T IDENTIFIER . CL CR L statements R
+   41 singledec: IDENTIFIER . LOP_ASSIGN expr
+   42          | IDENTIFIER .
+
+    LOP_ASSIGN  偏移，并进入状态 119
+    CL          偏移，并进入状态 120
+
+    $default  使用规则 42 以归约 (singledec)
+
+
+状态 84
+
+   38 declaration: T decs .
+
+    $default  使用规则 38 以归约 (declaration)
+
+
+状态 85
+
+   39 decs: singledec .
+   40     | singledec . COMMA decs
+
+    COMMA  偏移，并进入状态 121
+
+    $default  使用规则 39 以归约 (decs)
+
+
+状态 86
+
+   14 statement: L statements R .
+
+    $default  使用规则 14 以归约 (statement)
+
+
+状态 87
+
+   41 singledec: IDENTIFIER . LOP_ASSIGN expr
+   42          | IDENTIFIER .
+
+    LOP_ASSIGN  偏移，并进入状态 119
+
+    $default  使用规则 42 以归约 (singledec)
+
+
+状态 88
+
+   59 expr: CL expr CR .
+
+    $default  使用规则 59 以归约 (expr)
+
+
+状态 89
+
+   37 assign: IDENTIFIER LOP_ASSIGN expr .
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       偏移，并进入状态 70
+    EQUAL    偏移，并进入状态 71
+    NEQUAL   偏移，并进入状态 72
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+    $default  使用规则 37 以归约 (assign)
+
+
+状态 90
+
+   51 expr: IDENTIFIER PLUSE expr .
+   53     | expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       偏移，并进入状态 70
+    EQUAL    偏移，并进入状态 71
+    NEQUAL   偏移，并进入状态 72
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+    $default  使用规则 51 以归约 (expr)
+
+
+状态 91
+
+   52 expr: IDENTIFIER MINUSE expr .
+   53     | expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       偏移，并进入状态 70
+    EQUAL    偏移，并进入状态 71
+    NEQUAL   偏移，并进入状态 72
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+    $default  使用规则 52 以归约 (expr)
+
+
+状态 92
+
+   36 while: WHILE CL expr . CR statement
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    CR       偏移，并进入状态 122
+    OR       偏移，并进入状态 70
+    EQUAL    偏移，并进入状态 71
+    NEQUAL   偏移，并进入状态 72
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+
+状态 93
+
+   35 ifbody: IF CL expr . CR statement
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    CR       偏移，并进入状态 123
+    OR       偏移，并进入状态 70
+    EQUAL    偏移，并进入状态 71
+    NEQUAL   偏移，并进入状态 72
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+
+状态 94
+
+   30 forcondition: CL statement . expr SEMICOLON assign CR
+   31             | CL statement . expr SEMICOLON expr CR
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 124
+
+
+状态 95
+
+   29 for: FOR forcondition statement .
+
+    $default  使用规则 29 以归约 (for)
+
+
+状态 96
+
+   25 printf: PRINTF CL printfbodys . CR
+   27 printfbodys: printfbodys . COMMA printfbody
+
+    COMMA  偏移，并进入状态 125
+    CR     偏移，并进入状态 126
+
+
+状态 97
+
+   26 printfbodys: printfbody .
+
+    $default  使用规则 26 以归约 (printfbodys)
+
+
+状态 98
+
+   28 printfbody: expr .
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       偏移，并进入状态 70
+    EQUAL    偏移，并进入状态 71
+    NEQUAL   偏移，并进入状态 72
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+    $default  使用规则 28 以归约 (printfbody)
+
+
+状态 99
+
+   24 scanbody: QU . IDENTIFIER
+
+    IDENTIFIER  偏移，并进入状态 127
+
+
+状态 100
+
+   20 scanf: SCANF CL scanbodys . CR
+   22 scanbodys: scanbodys . COMMA scanbody
+
+    COMMA  偏移，并进入状态 128
+    CR     偏移，并进入状态 129
+
+
+状态 101
+
+   21 scanbodys: scanbody .
+
+    $default  使用规则 21 以归约 (scanbodys)
+
+
+状态 102
+
+   23 scanbody: expr .
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       偏移，并进入状态 70
+    EQUAL    偏移，并进入状态 71
+    NEQUAL   偏移，并进入状态 72
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+    $default  使用规则 23 以归约 (scanbody)
+
+
+状态 103
+
+   19 statement: RETURN expr SEMICOLON .
+
+    $default  使用规则 19 以归约 (statement)
+
+
+状态 104
+
+    5 function: T IDENTIFIER . CL CR L statements R
+
+    CL  偏移，并进入状态 120
+
+
+状态 105
+
+   34 elsebody: ELSE statement .
+
+    $default  使用规则 34 以归约 (elsebody)
+
+
+状态 106
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   66     | expr OR expr .
+   67     | expr . MOD expr
+
+    EQUAL    偏移，并进入状态 71
+    NEQUAL   偏移，并进入状态 72
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+    $default  使用规则 66 以归约 (expr)
+
+
+状态 107
+
+   53 expr: expr . EQUAL expr
+   53     | expr EQUAL expr .
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+    $default  使用规则 53 以归约 (expr)
+
+
+状态 108
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   58     | expr NEQUAL expr .
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+    $default  使用规则 58 以归约 (expr)
+
+
+状态 109
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   60     | expr BIGGER expr .
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    PLUS   偏移，并进入状态 77
+    MINUS  偏移，并进入状态 78
+    MUL    偏移，并进入状态 79
+    DIV    偏移，并进入状态 80
+    MOD    偏移，并进入状态 81
+    AND    偏移，并进入状态 82
+
+    $default  使用规则 60 以归约 (expr)
+
+
+状态 110
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   62     | expr LESS expr .
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    PLUS   偏移，并进入状态 77
+    MINUS  偏移，并进入状态 78
+    MUL    偏移，并进入状态 79
+    DIV    偏移，并进入状态 80
+    MOD    偏移，并进入状态 81
+    AND    偏移，并进入状态 82
+
+    $default  使用规则 62 以归约 (expr)
+
+
+状态 111
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   61     | expr BIGGERE expr .
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    PLUS   偏移，并进入状态 77
+    MINUS  偏移，并进入状态 78
+    MUL    偏移，并进入状态 79
+    DIV    偏移，并进入状态 80
+    MOD    偏移，并进入状态 81
+    AND    偏移，并进入状态 82
+
+    $default  使用规则 61 以归约 (expr)
+
+
+状态 112
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   63     | expr LESSE expr .
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    PLUS   偏移，并进入状态 77
+    MINUS  偏移，并进入状态 78
+    MUL    偏移，并进入状态 79
+    DIV    偏移，并进入状态 80
+    MOD    偏移，并进入状态 81
+    AND    偏移，并进入状态 82
+
+    $default  使用规则 63 以归约 (expr)
+
+
+状态 113
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   54     | expr PLUS expr .
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    MUL  偏移，并进入状态 79
+    DIV  偏移，并进入状态 80
+    MOD  偏移，并进入状态 81
+    AND  偏移，并进入状态 82
+
+    $default  使用规则 54 以归约 (expr)
+
+
+状态 114
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   55     | expr MINUS expr .
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    MUL  偏移，并进入状态 79
+    DIV  偏移，并进入状态 80
+    MOD  偏移，并进入状态 81
+    AND  偏移，并进入状态 82
+
+    $default  使用规则 55 以归约 (expr)
+
+
+状态 115
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   56     | expr MUL expr .
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    AND  偏移，并进入状态 82
+
+    $default  使用规则 56 以归约 (expr)
+
+
+状态 116
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   57     | expr DIV expr .
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    AND  偏移，并进入状态 82
+
+    $default  使用规则 57 以归约 (expr)
+
+
+状态 117
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+   67     | expr MOD expr .
+
+    AND  偏移，并进入状态 82
+
+    $default  使用规则 67 以归约 (expr)
+
+
+状态 118
+
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   65     | expr AND expr .
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    AND  偏移，并进入状态 82
+
+    $default  使用规则 65 以归约 (expr)
+
+
+状态 119
+
+   41 singledec: IDENTIFIER LOP_ASSIGN . expr
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    expr  转到状态 130
+
+
+状态 120
+
+    5 function: T IDENTIFIER CL . CR L statements R
+
+    CR  偏移，并进入状态 131
+
+
+状态 121
+
+   40 decs: singledec COMMA . decs
+
+    IDENTIFIER  偏移，并进入状态 87
+
+    decs       转到状态 132
+    singledec  转到状态 85
+
+
+状态 122
+
+   36 while: WHILE CL expr CR . statement
+
+    T_CHAR      偏移，并进入状态 1
+    T_INT       偏移，并进入状态 2
+    T_BOOL      偏移，并进入状态 3
+    VOID        偏移，并进入状态 4
+    L           偏移，并进入状态 5
+    CL          偏移，并进入状态 6
+    SEMICOLON   偏移，并进入状态 7
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    WHILE       偏移，并进入状态 12
+    IF          偏移，并进入状态 13
+    FOR         偏移，并进入状态 14
+    PRINTF      偏移，并进入状态 15
+    SCANF       偏移，并进入状态 16
+    RETURN      偏移，并进入状态 17
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    statement    转到状态 133
+    scanf        转到状态 27
+    printf       转到状态 28
+    for          转到状态 29
+    if           转到状态 30
+    ifbody       转到状态 31
+    while        转到状态 32
+    assign       转到状态 33
+    declaration  转到状态 34
+    expr         转到状态 35
+    T            转到状态 39
+
+
+状态 123
+
+   35 ifbody: IF CL expr CR . statement
+
+    T_CHAR      偏移，并进入状态 1
+    T_INT       偏移，并进入状态 2
+    T_BOOL      偏移，并进入状态 3
+    VOID        偏移，并进入状态 4
+    L           偏移，并进入状态 5
+    CL          偏移，并进入状态 6
+    SEMICOLON   偏移，并进入状态 7
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    WHILE       偏移，并进入状态 12
+    IF          偏移，并进入状态 13
+    FOR         偏移，并进入状态 14
+    PRINTF      偏移，并进入状态 15
+    SCANF       偏移，并进入状态 16
+    RETURN      偏移，并进入状态 17
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    statement    转到状态 134
+    scanf        转到状态 27
+    printf       转到状态 28
+    for          转到状态 29
+    if           转到状态 30
+    ifbody       转到状态 31
+    while        转到状态 32
+    assign       转到状态 33
+    declaration  转到状态 34
+    expr         转到状态 35
+    T            转到状态 39
+
+
+状态 124
+
+   30 forcondition: CL statement expr . SEMICOLON assign CR
+   31             | CL statement expr . SEMICOLON expr CR
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    SEMICOLON  偏移，并进入状态 135
+    OR         偏移，并进入状态 70
+    EQUAL      偏移，并进入状态 71
+    NEQUAL     偏移，并进入状态 72
+    BIGGER     偏移，并进入状态 73
+    LESS       偏移，并进入状态 74
+    BIGGERE    偏移，并进入状态 75
+    LESSE      偏移，并进入状态 76
+    PLUS       偏移，并进入状态 77
+    MINUS      偏移，并进入状态 78
+    MUL        偏移，并进入状态 79
+    DIV        偏移，并进入状态 80
+    MOD        偏移，并进入状态 81
+    AND        偏移，并进入状态 82
+
+
+状态 125
+
+   27 printfbodys: printfbodys COMMA . printfbody
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    printfbody  转到状态 136
+    expr        转到状态 98
+
+
+状态 126
+
+   25 printf: PRINTF CL printfbodys CR .
+
+    $default  使用规则 25 以归约 (printf)
+
+
+状态 127
+
+   24 scanbody: QU IDENTIFIER .
+
+    $default  使用规则 24 以归约 (scanbody)
+
+
+状态 128
+
+   22 scanbodys: scanbodys COMMA . scanbody
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 40
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+    QU          偏移，并进入状态 99
+
+    scanbody  转到状态 137
+    expr      转到状态 102
+
+
+状态 129
+
+   20 scanf: SCANF CL scanbodys CR .
+
+    $default  使用规则 20 以归约 (scanf)
+
+
+状态 130
+
+   41 singledec: IDENTIFIER LOP_ASSIGN expr .
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    OR       偏移，并进入状态 70
+    EQUAL    偏移，并进入状态 71
+    NEQUAL   偏移，并进入状态 72
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+    $default  使用规则 41 以归约 (singledec)
+
+
+状态 131
+
+    5 function: T IDENTIFIER CL CR . L statements R
+
+    L  偏移，并进入状态 138
+
+
+状态 132
+
+   40 decs: singledec COMMA decs .
+
+    $default  使用规则 40 以归约 (decs)
+
+
+状态 133
+
+   36 while: WHILE CL expr CR statement .
+
+    $default  使用规则 36 以归约 (while)
+
+
+状态 134
+
+   35 ifbody: IF CL expr CR statement .
+
+    $default  使用规则 35 以归约 (ifbody)
+
+
+状态 135
+
+   30 forcondition: CL statement expr SEMICOLON . assign CR
+   31             | CL statement expr SEMICOLON . expr CR
+
+    CL          偏移，并进入状态 6
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    assign  转到状态 139
+    expr    转到状态 140
+
+
+状态 136
+
+   27 printfbodys: printfbodys COMMA printfbody .
+
+    $default  使用规则 27 以归约 (printfbodys)
+
+
+状态 137
+
+   22 scanbodys: scanbodys COMMA scanbody .
+
+    $default  使用规则 22 以归约 (scanbodys)
+
+
+状态 138
+
+    5 function: T IDENTIFIER CL CR L . statements R
+
+    T_CHAR      偏移，并进入状态 1
+    T_INT       偏移，并进入状态 2
+    T_BOOL      偏移，并进入状态 3
+    VOID        偏移，并进入状态 4
+    L           偏移，并进入状态 5
+    CL          偏移，并进入状态 6
+    SEMICOLON   偏移，并进入状态 7
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    WHILE       偏移，并进入状态 12
+    IF          偏移，并进入状态 13
+    FOR         偏移，并进入状态 14
+    PRINTF      偏移，并进入状态 15
+    SCANF       偏移，并进入状态 16
+    RETURN      偏移，并进入状态 17
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    statements   转到状态 141
+    statement    转到状态 26
+    scanf        转到状态 27
+    printf       转到状态 28
+    for          转到状态 29
+    if           转到状态 30
+    ifbody       转到状态 31
+    while        转到状态 32
+    assign       转到状态 33
+    declaration  转到状态 34
+    expr         转到状态 35
+    T            转到状态 39
+
+
+状态 139
+
+   30 forcondition: CL statement expr SEMICOLON assign . CR
+
+    CR  偏移，并进入状态 142
+
+
+状态 140
+
+   31 forcondition: CL statement expr SEMICOLON expr . CR
+   53 expr: expr . EQUAL expr
+   54     | expr . PLUS expr
+   55     | expr . MINUS expr
+   56     | expr . MUL expr
+   57     | expr . DIV expr
+   58     | expr . NEQUAL expr
+   60     | expr . BIGGER expr
+   61     | expr . BIGGERE expr
+   62     | expr . LESS expr
+   63     | expr . LESSE expr
+   65     | expr . AND expr
+   66     | expr . OR expr
+   67     | expr . MOD expr
+
+    CR       偏移，并进入状态 143
+    OR       偏移，并进入状态 70
+    EQUAL    偏移，并进入状态 71
+    NEQUAL   偏移，并进入状态 72
+    BIGGER   偏移，并进入状态 73
+    LESS     偏移，并进入状态 74
+    BIGGERE  偏移，并进入状态 75
+    LESSE    偏移，并进入状态 76
+    PLUS     偏移，并进入状态 77
+    MINUS    偏移，并进入状态 78
+    MUL      偏移，并进入状态 79
+    DIV      偏移，并进入状态 80
+    MOD      偏移，并进入状态 81
+    AND      偏移，并进入状态 82
+
+
+状态 141
+
+    5 function: T IDENTIFIER CL CR L statements . R
+    7 statements: statements . statement
+
+    T_CHAR      偏移，并进入状态 1
+    T_INT       偏移，并进入状态 2
+    T_BOOL      偏移，并进入状态 3
+    VOID        偏移，并进入状态 4
+    L           偏移，并进入状态 5
+    R           偏移，并进入状态 144
+    CL          偏移，并进入状态 6
+    SEMICOLON   偏移，并进入状态 7
+    IDENTIFIER  偏移，并进入状态 8
+    INTEGER     偏移，并进入状态 9
+    CHAR        偏移，并进入状态 10
+    STRING      偏移，并进入状态 11
+    WHILE       偏移，并进入状态 12
+    IF          偏移，并进入状态 13
+    FOR         偏移，并进入状态 14
+    PRINTF      偏移，并进入状态 15
+    SCANF       偏移，并进入状态 16
+    RETURN      偏移，并进入状态 17
+    MINUS       偏移，并进入状态 18
+    NOT         偏移，并进入状态 19
+    PP          偏移，并进入状态 20
+    MM          偏移，并进入状态 21
+
+    statement    转到状态 62
+    scanf        转到状态 27
+    printf       转到状态 28
+    for          转到状态 29
+    if           转到状态 30
+    ifbody       转到状态 31
+    while        转到状态 32
+    assign       转到状态 33
+    declaration  转到状态 34
+    expr         转到状态 35
+    T            转到状态 39
+
+
+状态 142
+
+   30 forcondition: CL statement expr SEMICOLON assign CR .
+
+    $default  使用规则 30 以归约 (forcondition)
+
+
+状态 143
+
+   31 forcondition: CL statement expr SEMICOLON expr CR .
+
+    $default  使用规则 31 以归约 (forcondition)
+
+
+状态 144
+
+    5 function: T IDENTIFIER CL CR L statements R .
+
+    $default  使用规则 5 以归约 (function)
