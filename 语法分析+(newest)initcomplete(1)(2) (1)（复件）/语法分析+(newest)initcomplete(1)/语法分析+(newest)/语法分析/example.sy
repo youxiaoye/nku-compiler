@@ -1,0 +1,39 @@
+int main() {
+    
+    
+    int num1, num2, sum = 0, temp;
+
+
+    if (num1 > num2) {
+        
+        temp = num1;
+        num1 = num2;
+        num2 = temp;
+    }
+
+    
+    for (int i = num1; i <= num2; i++) {
+        
+        if (i % 2 == 0 || sum !=0&& sum ==0) {
+            sum =sum+i;  
+        }
+    }
+
+    
+    int is_positive = 1;
+    while (sum != 0) {
+        if (sum < 0) {
+            is_positive = 0;
+            break;
+        }
+        //sum /= 10;  
+    }
+
+    
+    if (is_positive == 1) {
+       // printf("%d\n", sum);
+       break;
+    }
+
+    return 0;
+}
